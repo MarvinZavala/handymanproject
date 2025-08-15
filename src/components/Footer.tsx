@@ -12,7 +12,11 @@ export default function Footer() {
     { name: 'Leak Detection', href: '/services/leak-inspection' },
   ];
 
-  const areaLinks = [
+  const majorAreas = [
+    'San Francisco Bay Area', 'Silicon Valley', 'Sacramento'
+  ];
+  
+  const localAreas = [
     'Oakland', 'San Leandro', 'Alameda', 'Berkeley', 
     'Hayward', 'San Lorenzo', 'Castro Valley', 'Fremont'
   ];
@@ -72,13 +76,31 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-brand-gold">
               Service Areas
             </h3>
-            <ul className="space-y-2">
-              {areaLinks.map((area) => (
-                <li key={area}>
-                  <span className="text-gray-300 text-sm">{area}</span>
-                </li>
-              ))}
-            </ul>
+            
+            {/* Major Areas */}
+            <div>
+              <h4 className="text-sm font-medium text-brand-gold mb-2">Regional Coverage</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-1 gap-1">
+                {majorAreas.map((area) => (
+                  <span key={area} className="text-gray-300 text-sm">
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            {/* Local Areas */}
+            <div>
+              <h4 className="text-sm font-medium text-brand-gold mb-2">Local Communities</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-2 gap-1">
+                {localAreas.map((area) => (
+                  <span key={area} className="text-gray-300 text-sm">
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
             <Link 
               href="/areas"
               className="text-brand-gold hover:text-brand-gold-light text-sm transition-colors inline-block"

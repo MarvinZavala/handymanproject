@@ -256,7 +256,7 @@ export default function ServicesPage() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-brand-navy px-8 py-4"
+                className="border-white bg-transparent text-white hover:bg-white hover:text-brand-navy px-8 py-4"
                 asChild
               >
                 <a href="mailto:info@twinhandyman.com">

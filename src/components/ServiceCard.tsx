@@ -51,7 +51,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
               className="text-brand-blue hover:text-brand-navy hover:bg-brand-blue-light hover:bg-opacity-20 p-1.5 sm:p-2 flex-shrink-0"
               asChild
             >
-              <a href="tel:(510) 926-7272">
+              <a href="/gallery">
                 <ArrowRight className="w-4 h-4" />
               </a>
             </Button>

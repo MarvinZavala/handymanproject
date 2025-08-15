@@ -34,7 +34,8 @@ export default function AreasWeServe() {
             
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
               <span className="block text-white">Serving the Entire</span>
-              <span className="block text-brand-gold" style={{ textShadow: '0 0 20px rgba(184, 142, 59, 0.5)' }}>Bay Area</span>
+              <span className="block text-brand-gold" style={{ textShadow: '0 0 20px rgba(184, 142, 59, 0.5)' }}>San Francisco Bay Area</span>
+              <span className="block text-white text-xl sm:text-2xl lg:text-3xl xl:text-4xl">The Greater Sacramento Area</span>
             </h1>
             
             <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
@@ -56,7 +57,7 @@ export default function AreasWeServe() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-brand-navy px-8 py-4"
+                className="border-white bg-transparent text-white hover:bg-white hover:text-brand-navy px-8 py-4"
                 asChild
               >
                 <Link href="/services">
@@ -209,7 +210,7 @@ export default function AreasWeServe() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-brand-navy px-8 py-4"
+                className="border-white bg-transparent text-white hover:bg-white hover:text-brand-navy px-8 py-4"
                 asChild
               >
                 <Link href="/services">

@@ -111,7 +111,7 @@ export default function Home() {
               <span>COMMERCIAL SPECIALISTS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
-              <span className="block">Professional Commercial</span>
+              <span className="block">Professional - Residential & Commercial</span>
               <span className="block bg-gradient-to-r from-brand-gold to-yellow-300 bg-clip-text text-transparent">
                 Plumbing Services
               </span>
@@ -199,7 +199,7 @@ export default function Home() {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-brand-navy px-8 py-4"
+                  className="border-white bg-transparent text-white hover:bg-white hover:text-brand-navy px-8 py-4"
                   asChild
                 >
                   <Link href="/services">
