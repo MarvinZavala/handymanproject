@@ -321,7 +321,7 @@ export const services: Service[] = [
       }
     ],
     category: 'installation',
-    icon: 'Pipe'
+    icon: 'Pipette'
   },
 
   // Repairs
@@ -467,7 +467,7 @@ export const services: Service[] = [
       }
     ],
     category: 'repair',
-    icon: 'Tool'
+    icon: 'Wrench'
   },
   {
     slug: 'sewer-repair',
@@ -758,6 +758,131 @@ export const services: Service[] = [
     ],
     category: 'featured',
     icon: 'Search'
+  },
+  
+  // Commercial Services - Featured
+  {
+    slug: 'commercial-floor-drain-maintenance',
+    title: 'Commercial Floor Drain Maintenance',
+    short: 'Professional maintenance and cleaning of commercial floor drains for optimal performance.',
+    description: 'Comprehensive commercial floor drain maintenance services to prevent backups, eliminate odors, and ensure proper drainage in restaurants, kitchens, warehouses, and industrial facilities. Regular maintenance prevents costly emergencies and health code violations.',
+    benefits: [
+      'Prevents costly drain backups and emergencies',
+      'Eliminates foul odors and bacterial buildup',
+      'Ensures health code compliance',
+      'Extends drain system lifespan',
+      'Scheduled maintenance programs available',
+      'Emergency commercial service available'
+    ],
+    faq: [
+      {
+        question: 'How often should commercial floor drains be maintained?',
+        answer: 'Commercial floor drains should be professionally maintained every 3-6 months, or more frequently for high-usage facilities like restaurants and food processing plants.'
+      },
+      {
+        question: 'What does commercial drain maintenance include?',
+        answer: 'Our service includes drain inspection, high-pressure cleaning, grease and debris removal, trap cleaning, and preventive treatment to reduce future buildup.'
+      },
+      {
+        question: 'Do you offer maintenance contracts for businesses?',
+        answer: 'Yes, we provide scheduled maintenance contracts tailored to your business needs, ensuring regular service and priority emergency response.'
+      }
+    ],
+    category: 'featured',
+    icon: 'Building2'
+  },
+  
+  {
+    slug: 'commercial-water-heaters-100-gallon',
+    title: '100 Gallon Commercial Water Heaters',
+    short: 'Installation, repair, and maintenance of 100-gallon commercial water heating systems.',
+    description: 'Professional commercial water heater services for 100-gallon units. We handle installation, repairs, maintenance, and replacement for restaurants, hotels, healthcare facilities, and other commercial properties requiring high-capacity hot water systems.',
+    benefits: [
+      'High-capacity hot water for commercial needs',
+      'Energy-efficient operation and cost savings',
+      'Professional installation and setup',
+      'Emergency repair and replacement service',
+      'Preventive maintenance programs',
+      'Code-compliant installations'
+    ],
+    faq: [
+      {
+        question: 'How long does a 100-gallon commercial water heater last?',
+        answer: 'With proper maintenance, commercial water heaters typically last 8-12 years. Regular maintenance can extend their lifespan significantly.'
+      },
+      {
+        question: 'What maintenance is required for commercial water heaters?',
+        answer: 'Annual inspections, tank flushing, anode rod replacement, temperature and pressure valve testing, and burner cleaning are essential for optimal performance.'
+      },
+      {
+        question: 'Can you handle emergency commercial water heater repairs?',
+        answer: 'Yes, we provide 24/7 emergency service for commercial water heater failures to minimize business downtime.'
+      }
+    ],
+    category: 'featured',
+    icon: 'Flame'
+  },
+  
+  {
+    slug: 'drain-hydro-jet-cleaning-4-6-inch',
+    title: '4-6 inch Drain Hydro Jet Cleaning',
+    short: 'High-pressure hydro jet cleaning for 4-6 inch commercial and residential drain lines.',
+    description: 'Professional hydro jet drain cleaning service for 4-6 inch pipes. Our high-pressure water jetting effectively removes grease, debris, tree roots, and tough blockages from main lines, commercial drains, and large residential pipes.',
+    benefits: [
+      'Removes stubborn blockages and buildup',
+      'Clears grease, roots, and scale deposits',
+      'Restores full pipe capacity and flow',
+      'Environmentally friendly cleaning method',
+      'Prevents future clogs and backups',
+      'Video inspection available'
+    ],
+    faq: [
+      {
+        question: 'What size pipes can hydro jetting clean?',
+        answer: 'Our hydro jet equipment is specifically designed for 4-6 inch drain lines, perfect for main sewer lines and commercial drainage systems.'
+      },
+      {
+        question: 'Is hydro jetting safe for older pipes?',
+        answer: 'We perform a video inspection first to assess pipe condition. Hydro jetting is safe for most pipes when performed by trained professionals.'
+      },
+      {
+        question: 'How effective is hydro jetting compared to snaking?',
+        answer: 'Hydro jetting is much more thorough than snaking, removing all buildup and debris rather than just creating a hole through the blockage.'
+      }
+    ],
+    category: 'featured',
+    icon: 'Zap'
+  },
+  
+  {
+    slug: 'commercial-rough-plumbing',
+    title: 'Commercial Rough Plumbing',
+    short: 'Complete commercial rough plumbing installation for new construction and renovations.',
+    description: 'Professional commercial rough plumbing services for new construction, tenant improvements, and major renovations. We handle complete pipe installation, fixture placement, and code-compliant systems for offices, restaurants, retail spaces, and industrial facilities.',
+    benefits: [
+      'Complete commercial plumbing systems',
+      'Code-compliant installations',
+      'Coordination with general contractors',
+      'Licensed and insured commercial work',
+      'Timely project completion',
+      'Quality materials and workmanship'
+    ],
+    faq: [
+      {
+        question: 'What does commercial rough plumbing include?',
+        answer: 'Rough plumbing includes water supply lines, drain and waste systems, vent piping, fixture placement, and all necessary connections before walls are closed.'
+      },
+      {
+        question: 'Do you work with general contractors?',
+        answer: 'Yes, we coordinate closely with general contractors and project managers to ensure timely completion and proper integration with other trades.'
+      },
+      {
+        question: 'Are you licensed for commercial plumbing work?',
+        answer: 'Yes, we are fully licensed, bonded, and insured for commercial plumbing projects of all sizes throughout the Bay Area.'
+      }
+    ],
+    category: 'featured',
+    icon: 'Wrench'
   }
 ];
 

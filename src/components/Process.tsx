@@ -1,4 +1,5 @@
 import { Phone, Calendar, Wrench, CheckCircle } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Process() {
   const steps = [
@@ -29,19 +30,30 @@ export default function Process() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-brand-navy">
+    <section className="py-12 sm:py-16 bg-gray-50 relative overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="/lavamanos1.jpg"
+          alt="Professional plumbing work background"
+          fill
+          className="object-cover opacity-8"
+        />
+        <div className="absolute inset-0 bg-gray-50/90"></div>
+      </div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center space-y-4 mb-12 sm:mb-16 px-2 sm:px-0">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">
             How We Work
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Simple, transparent process from initial contact to job completion. 
             We make getting professional plumbing service easy and stress-free.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {steps.map((step, index) => (
             <div key={index} className="relative">
               {/* Connector Line */}
@@ -50,7 +62,7 @@ export default function Process() {
               )}
               
               {/* Step Card */}
-              <div className="relative bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center space-y-4 z-10">
+              <div className="relative bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center space-y-3 sm:space-y-4 z-10 mx-2 sm:mx-0">
                 <div className="relative">
                   {/* Step Number */}
                   <div className="absolute -top-3 -right-3 w-8 h-8 bg-brand-gold rounded-full flex items-center justify-center text-sm font-bold text-white">
@@ -58,16 +70,16 @@ export default function Process() {
                   </div>
                   
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="w-8 h-8 text-white" />
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold text-brand-navy">
+                <h3 className="text-lg sm:text-xl font-bold text-brand-navy leading-tight">
                   {step.title}
                 </h3>
                 
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -75,34 +87,6 @@ export default function Process() {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <div className="bg-brand-navy rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Ready to Get Started?
-            </h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Don&apos;t wait for plumbing problems to get worse. Call now for same-day service 
-              or schedule a convenient appointment that works with your schedule.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a 
-                href="tel:(510) 926-7272"
-                className="bg-brand-gold hover:bg-brand-gold-dark text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 flex items-center"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Call (510) 926-7272
-              </a>
-              <span className="text-gray-400">or</span>
-              <a 
-                href="mailto:info@twinhandyman.com"
-                className="border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
-              >
-                Get Free Estimate
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
