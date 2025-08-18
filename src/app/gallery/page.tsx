@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ZoomIn, X, ChevronLeft, ChevronRight, ArrowLeft, Phone, Star, Award } from 'lucide-react';
@@ -9,6 +9,9 @@ import { galleryImages, categories } from '@/components/WorkGallery';
 
 
 export default function GalleryPage() {
+  const [isGalleryHeroVisible, setIsGalleryHeroVisible] = useState(false);
+  const galleryHeroRef = useRef<HTMLDivElement>(null);
+  const galleryGridRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,11 +27,90 @@ export default function GalleryPage() {
   const startIndex = (currentPage - 1) * imagesPerPage;
   const currentImages = filteredImages.slice(startIndex, startIndex + imagesPerPage);
   
+  // Utility function to scroll to gallery grid - Professional implementation
+  const scrollToGallery = () => {
+    if (!galleryGridRef.current) return;
+    
+    try {
+      const element = galleryGridRef.current;
+      const elementRect = element.getBoundingClientRect();
+      const absoluteElementTop = elementRect.top + window.pageYOffset;
+      
+      // Calculate optimal offset based on viewport and device
+      const headerHeight = 80; // Account for sticky header
+      const paddingTop = 40; // Additional breathing room
+      const targetScrollPosition = Math.max(0, absoluteElementTop - headerHeight - paddingTop);
+      
+      // Use requestAnimationFrame for better performance
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: targetScrollPosition,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Fallback for older browsers
+      if (!window.CSS || !CSS.supports('scroll-behavior', 'smooth')) {
+        window.scrollTo(0, targetScrollPosition);
+      }
+    } catch (error) {
+      console.warn('Scroll to gallery failed:', error);
+      // Graceful fallback - scroll to a reasonable position
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+  };
+
   // Reset to page 1 when category changes
   const handleCategoryChange = (category: string) => {
+    if (category === selectedCategory) return; // Prevent unnecessary updates
+    
     setSelectedCategory(category);
     setCurrentPage(1);
+    
+    // Use double RAF to ensure DOM has fully updated
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollToGallery();
+      });
+    });
   };
+
+  // Handle page change with auto-scroll to gallery
+  const handlePageChange = (page: number) => {
+    if (page === currentPage) return; // Prevent unnecessary updates
+    if (page < 1 || page > totalPages) return; // Validate page bounds
+    
+    setCurrentPage(page);
+    
+    // Use double RAF to ensure state update and re-render complete
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollToGallery();
+      });
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsGalleryHeroVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const currentRef = galleryHeroRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
 
   const openLightbox = (index: number) => {
     // Convert local index to global index in filtered images
@@ -62,20 +144,20 @@ export default function GalleryPage() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-6">
-            <div className="inline-flex items-center space-x-2 bg-brand-gold/20 text-brand-gold px-4 py-2 rounded-full text-sm font-medium">
+          <div ref={galleryHeroRef} className="text-center space-y-6">
+            <div className={`inline-flex items-center space-x-2 bg-brand-gold/20 text-brand-gold px-4 py-2 rounded-full text-sm font-medium transition-all duration-700 ${isGalleryHeroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
               <Star className="w-4 h-4" />
               <span>Premium Quality Work</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+            <h1 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight transition-all duration-700 ${isGalleryHeroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
               <span className="block text-white">See What We've</span>
               <span className="block text-brand-gold" style={{ textShadow: '0 0 20px rgba(184, 142, 59, 0.5)' }}>Built Together</span>
             </h1>
             
-            <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+            <p className={`text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed transition-all duration-700 ${isGalleryHeroVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
               Real homes, real families, real results. Take a look at some of our favorite projects 
-              from neighbors just like you across San Leandro, Oakland, and the Bay Area.
+              from neighbors just like you across The San Francisco Bay Area, Silicon Valley and Sacramento.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
@@ -132,7 +214,7 @@ export default function GalleryPage() {
           </div>
 
           {/* Gallery Grid - Paginated */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+          <div ref={galleryGridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
             {currentImages.map((image, index) => (
               <div
                 key={index}
@@ -169,7 +251,7 @@ export default function GalleryPage() {
             <div className="flex justify-center items-center space-x-4 mb-12">
               <Button
                 variant="outline"
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
                 disabled={currentPage === 1}
                 className="px-4 py-2"
               >
@@ -181,7 +263,7 @@ export default function GalleryPage() {
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                   <button
                     key={page}
-                    onClick={() => setCurrentPage(page)}
+                    onClick={() => handlePageChange(page)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       currentPage === page
                         ? 'bg-brand-blue text-white'
@@ -195,7 +277,7 @@ export default function GalleryPage() {
               
               <Button
                 variant="outline"
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
                 disabled={currentPage === totalPages}
                 className="px-4 py-2"
               >

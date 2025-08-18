@@ -14,7 +14,7 @@ export const services: Service[] = [
   {
     slug: 'bathtub-installation',
     title: 'Bathtub Installation',
-    short: 'Professional bathtub installation services for your bathroom renovation.',
+    short: 'Get your new bathtub installed right the first time. We handle everything from removal to final setup.',
     description: 'Transform your bathroom with expert bathtub installation. Our skilled technicians handle everything from alcove tubs to luxury freestanding models, ensuring proper plumbing connections and perfect fit.',
     benefits: [
       'Professional installation with warranty',
@@ -38,7 +38,7 @@ export const services: Service[] = [
   {
     slug: 'drain-installation',
     title: 'Drain Installation',
-    short: 'Expert drain installation for sinks, showers, and floor drains.',
+    short: 'Need a new drain installed? We put in sinks, shower, and floor drains that work perfectly.',
     description: 'Professional drain installation services for residential and commercial properties. We install all types of drains including floor drains, shower drains, and sink drains with proper slope and connections.',
     benefits: [
       'Proper drainage and flow',
@@ -62,7 +62,7 @@ export const services: Service[] = [
   {
     slug: 'faucet-installation',
     title: 'Faucet Installation',
-    short: 'Kitchen and bathroom faucet installation by licensed professionals.',
+    short: 'Upgrade your kitchen or bathroom with a new faucet. We install any brand, any style.',
     description: 'Upgrade your kitchen or bathroom with new faucet installation. From single-handle to touchless models, we ensure proper connections and optimal water pressure.',
     benefits: [
       'Perfect water pressure adjustment',
@@ -86,7 +86,7 @@ export const services: Service[] = [
   {
     slug: 'garbage-disposal-installation',
     title: 'Garbage Disposal Installation',
-    short: 'Professional garbage disposal installation and setup.',
+    short: 'Make kitchen cleanup easier with a new garbage disposal. We handle the wiring and plumbing.',
     description: 'Expert installation of garbage disposals for convenient kitchen waste management. We handle electrical connections, plumbing integration, and proper mounting.',
     benefits: [
       'Electrical safety compliance',
@@ -110,7 +110,7 @@ export const services: Service[] = [
   {
     slug: 'gas-line-installation',
     title: 'Gas Line Installation',
-    short: 'Safe and code-compliant gas line installation services.',
+    short: 'Need gas lines for your appliances? Our certified techs install them safely and up to code.',
     description: 'Professional gas line installation for appliances, water heaters, and heating systems. Our certified technicians ensure safety, compliance, and proper pressure testing.',
     benefits: [
       'Certified gas technicians',
@@ -134,7 +134,7 @@ export const services: Service[] = [
   {
     slug: 'plumbing-inspection',
     title: 'Plumbing Inspection',
-    short: 'Comprehensive plumbing system inspection and assessment.',
+    short: 'Get a thorough check of your plumbing before problems become expensive repairs.',
     description: 'Thorough plumbing inspections for home buyers, sellers, or maintenance. We identify potential issues, code violations, and provide detailed reports with recommendations.',
     benefits: [
       'Detailed written reports',
@@ -158,7 +158,7 @@ export const services: Service[] = [
   {
     slug: 'plumbing-installation-replacement',
     title: 'Plumbing Installation & Replacement',
-    short: 'Complete plumbing system installation and replacement services.',
+    short: 'Full plumbing system work for new builds or major renovations. We do it all.',
     description: 'Full-service plumbing installation and replacement for new construction or major renovations. We handle complete system design, installation, and testing.',
     benefits: [
       'Complete system design',
@@ -182,7 +182,7 @@ export const services: Service[] = [
   {
     slug: 'sewer-installation',
     title: 'Sewer Installation',
-    short: 'Professional sewer line installation and connection services.',
+    short: 'New sewer line installation with proper connections to the city system.',
     description: 'Expert sewer line installation for new connections or complete replacements. We handle excavation, proper grading, and connection to municipal systems.',
     benefits: [
       'Proper slope and grading',
@@ -206,7 +206,7 @@ export const services: Service[] = [
   {
     slug: 'shower-installation',
     title: 'Shower Installation',
-    short: 'Custom shower installation for bathroom renovations.',
+    short: 'Transform your bathroom with a new shower. From basic to luxury, we install them all.',
     description: 'Professional shower installation including shower pans, doors, fixtures, and plumbing. From simple replacements to luxury custom showers.',
     benefits: [
       'Waterproof installation',
@@ -230,7 +230,7 @@ export const services: Service[] = [
   {
     slug: 'sink-installation',
     title: 'Sink Installation',
-    short: 'Kitchen and bathroom sink installation services.',
+    short: 'New kitchen or bathroom sink installation. Any style, perfect fit guaranteed.',
     description: 'Expert sink installation for kitchens, bathrooms, and utility rooms. We handle undermount, drop-in, and vessel sinks with proper support and connections.',
     benefits: [
       'Proper mounting and support',
@@ -254,7 +254,7 @@ export const services: Service[] = [
   {
     slug: 'toilet-installation',
     title: 'Toilet Installation',
-    short: 'Professional toilet installation and replacement services.',
+    short: 'New toilet installation or replacement. Quick, clean, and done right.',
     description: 'Expert toilet installation with proper sealing, level mounting, and water connection. We handle standard and comfort-height models with efficiency upgrades.',
     benefits: [
       'Perfect level installation',
@@ -278,7 +278,7 @@ export const services: Service[] = [
   {
     slug: 'water-heater-installation',
     title: 'Water Heater Installation',
-    short: 'Tank and tankless water heater installation services.',
+    short: 'Get hot water flowing again with a new water heater. Tank or tankless, we install both.',
     description: 'Professional water heater installation for both traditional tank and modern tankless systems. We handle gas, electric, and hybrid models with proper venting and connections.',
     benefits: [
       'Energy efficiency optimization',
@@ -302,7 +302,7 @@ export const services: Service[] = [
   {
     slug: 'water-pipe-installation',
     title: 'Water Pipe Installation',
-    short: 'Complete water pipe installation and replacement services.',
+    short: 'Fresh water pipes for better flow and pressure. Modern materials, lasting results.',
     description: 'Professional water pipe installation using modern materials and techniques. We handle everything from small repairs to complete home repiping projects.',
     benefits: [
       'Modern pipe materials',
@@ -328,7 +328,7 @@ export const services: Service[] = [
   {
     slug: 'bathtub-repair',
     title: 'Bathtub Repair',
-    short: 'Professional bathtub repair for leaks, cracks, and damage.',
+    short: 'Fix that leaky or cracked bathtub before it gets worse. Fast, affordable repairs.',
     description: 'Expert bathtub repair services including crack repair, caulking, drain fixes, and faucet problems. We restore your bathtub to perfect working condition.',
     benefits: [
       'Cost-effective solutions',
@@ -352,7 +352,7 @@ export const services: Service[] = [
   {
     slug: 'drain-repair',
     title: 'Drain Repair',
-    short: 'Fast drain repair for clogs, leaks, and drainage issues.',
+    short: 'Drain acting up? We fix clogs, leaks, and slow drainage fast.',
     description: 'Professional drain repair services for all types of drainage problems. From simple clogs to complex pipe repairs, we get your drains flowing properly.',
     benefits: [
       'Fast problem resolution',
@@ -376,7 +376,7 @@ export const services: Service[] = [
   {
     slug: 'faucet-repair',
     title: 'Faucet Repair',
-    short: 'Quick faucet repair for leaks, drips, and low pressure.',
+    short: 'Stop that annoying drip! We fix leaky faucets and restore proper water pressure.',
     description: 'Expert faucet repair for all makes and models. We fix leaks, restore water pressure, replace cartridges, and handle any faucet malfunction.',
     benefits: [
       'Stop water waste',
@@ -400,7 +400,7 @@ export const services: Service[] = [
   {
     slug: 'garbage-disposal-repair',
     title: 'Garbage Disposal Repair',
-    short: 'Garbage disposal repair and troubleshooting services.',
+    short: 'Disposal not working? We fix jams, leaks, and get your kitchen running smoothly again.',
     description: 'Professional garbage disposal repair for jams, leaks, and electrical issues. We restore proper operation and prevent kitchen flooding.',
     benefits: [
       'Restore kitchen functionality',
@@ -424,7 +424,7 @@ export const services: Service[] = [
   {
     slug: 'gas-line-repair',
     title: 'Gas Line Repair',
-    short: 'Emergency gas line repair and leak detection services.',
+    short: 'Gas leak emergency? We respond fast to fix gas lines safely and restore your peace of mind.',
     description: 'Immediate gas line repair services for safety and code compliance. Our certified technicians handle leaks, damaged lines, and pressure issues.',
     benefits: [
       'Emergency response',
@@ -448,7 +448,7 @@ export const services: Service[] = [
   {
     slug: 'plumbing-repair',
     title: 'Plumbing Repair',
-    short: 'General plumbing repair services for all your needs.',
+    short: 'Whatever your plumbing problem, we fix it. From small leaks to major pipe issues.',
     description: 'Comprehensive plumbing repair services for residential and commercial properties. From minor leaks to major pipe problems, we fix it right.',
     benefits: [
       'Fast problem solving',
@@ -472,7 +472,7 @@ export const services: Service[] = [
   {
     slug: 'sewer-repair',
     title: 'Sewer Repair',
-    short: 'Professional sewer line repair and maintenance services.',
+    short: 'Sewer line problems? We clear blockages and fix damaged pipes with minimal digging.',
     description: 'Expert sewer repair services including line cleaning, root removal, and pipe replacement. We solve sewer problems quickly and effectively.',
     benefits: [
       'Prevent sewage backup',

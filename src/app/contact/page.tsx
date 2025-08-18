@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
+import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
@@ -113,6 +114,93 @@ export default function Contact() {
                     </Button>
                   </div>
                 </div>
+
+                {/* Calendly */}
+                <div className="flex items-start space-x-4 p-6 bg-gradient-to-r from-brand-gold/10 to-yellow-500/10 rounded-xl border border-brand-gold/20">
+                  <div className="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center flex-shrink-0">
+                    <Calendar className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-brand-navy mb-2">Schedule Online</h3>
+                    <p className="text-gray-600 mb-3">Book your appointment at your convenience</p>
+                    <Button 
+                      variant="outline"
+                      className="border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white"
+                      asChild
+                    >
+                      <a 
+                        href="https://calendly.com/gladiatorman4"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Calendar className="w-4 h-4 mr-2" />
+                        Schedule Appointment
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Instagram */}
+                <div className="flex items-start space-x-4 p-6 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-xl border border-pink-500/20">
+                  <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Instagram className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-brand-navy mb-2">Follow on Instagram</h3>
+                    <p className="text-gray-600 mb-3">See our latest work and behind-the-scenes</p>
+                    <Button 
+                      variant="outline"
+                      className="border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white"
+                      asChild
+                    >
+                      <a 
+                        href="https://www.instagram.com/twinhandyman_plumbing?igsh=NTc4MTIwNjQ2YQ=="
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Instagram className="w-4 h-4 mr-2" />
+                        @twinhandyman_plumbing
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Yelp */}
+                <div className="flex items-start space-x-4 p-6 bg-gradient-to-r from-red-500/10 to-orange-500/10 rounded-xl border border-red-500/20">
+                  <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Image
+                      src="/YelpSVGcon.svg"
+                      alt="Yelp"
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-brand-navy mb-2">Review on Yelp</h3>
+                    <p className="text-gray-600 mb-3">Share your experience with our service</p>
+                    <Button 
+                      variant="outline"
+                      className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+                      asChild
+                    >
+                      <a 
+                        href="https://www.yelp.com/biz/twin-handyman-and-plumbing-san-leandro?rr=1#location-and-hours"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src="/YelpSVGcon.svg"
+                          alt="Yelp"
+                          width={16}
+                          height={16}
+                          className="w-4 h-4 mr-2"
+                        />
+                        Read & Write Reviews
+                      </a>
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -131,24 +219,17 @@ export default function Contact() {
                     <Clock className="w-6 h-6 text-brand-gold" />
                     <h3 className="text-xl font-bold">Service Hours</h3>
                   </div>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span>Monday - Friday:</span>
-                      <span>7:00 AM - 8:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Saturday:</span>
-                      <span>8:00 AM - 6:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Sunday:</span>
-                      <span>9:00 AM - 5:00 PM</span>
-                    </div>
-                    <div className="border-t border-white/20 pt-2 mt-3">
-                      <div className="flex justify-between font-bold text-brand-gold">
-                        <span>Emergency Service:</span>
-                        <span>24/7 Available</span>
+                  <div className="space-y-3 text-sm">
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-brand-gold mb-2">
+                        We're Available 24/7
                       </div>
+                      <p className="text-white/90">
+                        Monday through Sunday, around the clock
+                      </p>
+                      <p className="text-white/80 text-xs mt-2">
+                        Always ready to help with your plumbing emergencies and scheduled services
+                      </p>
                     </div>
                   </div>
                 </div>

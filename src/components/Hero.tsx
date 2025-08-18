@@ -5,9 +5,11 @@ import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import Image from 'next/image';
 import RequestCallback from './RequestCallback';
+import VirtualEstimateModal from './VirtualEstimateModal';
 
 export default function Hero() {
   const [isCallbackOpen, setIsCallbackOpen] = useState(false);
+  const [isVirtualEstimateOpen, setIsVirtualEstimateOpen] = useState(false);
 
   return (
     <>
@@ -30,14 +32,14 @@ export default function Hero() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 lg:py-16">
-          {/* Mobile Logo - Smaller and centered */}
+          {/* Mobile Logo - Extra large and centered */}
           <div className="lg:hidden flex justify-center mb-4">
             <Image
               src="/handymanlogo.png"
               alt="Twin Handyman & Plumbing Logo"
-              width={80}
-              height={80}
-              className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-lg animate-scale-in"
+              width={220}
+              height={220}
+              className="w-[168px] h-[168px] sm:w-[200px] sm:h-[200px] md:w-[232px] md:h-[232px] object-contain drop-shadow-lg animate-scale-in"
               priority
             />
           </div>
@@ -79,17 +81,15 @@ export default function Hero() {
                 <div className="flex justify-center lg:justify-start">
                   <Button 
                     className="bg-gradient-to-r from-brand-gold via-yellow-400 to-brand-gold hover:from-yellow-500 hover:to-brand-gold text-brand-navy font-black px-6 py-4 sm:px-8 sm:py-5 text-base sm:text-lg shadow-2xl border-2 border-yellow-300 transform hover:scale-105 transition-all duration-300 w-auto mx-auto lg:mx-0 min-h-[60px] sm:min-h-0"
-                    asChild
+                    onClick={() => setIsVirtualEstimateOpen(true)}
                   >
-                    <div className="cursor-pointer">
-                      <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 space-y-1 sm:space-y-0">
-                        <div className="flex items-center space-x-2">
-                          <Video className="w-5 h-5 sm:w-6 sm:h-6" />
-                          <span className="uppercase tracking-wide sm:tracking-wider text-sm sm:text-base font-black">FREE VIRTUAL ESTIMATE</span>
-                        </div>
-                        <div className="text-center text-sm sm:text-sm font-bold text-brand-navy/80">
-                          VIA FACETIME • ZOOM
-                        </div>
+                    <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 space-y-1 sm:space-y-0">
+                      <div className="flex items-center space-x-2">
+                        <Video className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <span className="uppercase tracking-wide sm:tracking-wider text-sm sm:text-base font-black">FREE VIRTUAL ESTIMATE</span>
+                      </div>
+                      <div className="text-center text-sm sm:text-sm font-bold text-brand-navy/80">
+                        VIA FACETIME • ZOOM
                       </div>
                     </div>
                   </Button>
@@ -101,9 +101,8 @@ export default function Hero() {
                     className="border-0 bg-brand-gold/30 backdrop-blur-sm text-white hover:bg-brand-gold hover:text-brand-navy font-bold px-6 py-3 text-sm sm:text-base shadow-lg transition-all duration-300 rounded-xl"
                     asChild
                   >
-                    <a href="tel:(510) 926-7272">
-                      <Phone className="w-4 h-4 mr-2" />
-                      or CALL: (510) 926-7272
+                  <a href="tel:(510) 926-7272">
+                      <Phone className="w-4 h-4 mr-2" />CALL: (510) 926-7272
                     </a>
                   </Button>
                 </div>
@@ -115,12 +114,13 @@ export default function Hero() {
               {/* Desktop Logo */}
               <div className="hidden lg:flex justify-center mb-8">
                 <div className="relative">
+                  
                   <Image
                     src="/handymanlogo.png"
                     alt="Twin Handyman & Plumbing Logo"
-                    width={280}
-                    height={280}
-                    className="w-60 h-60 xl:w-72 xl:h-72 object-contain drop-shadow-2xl animate-scale-in"
+                    width={320}
+                    height={320}
+                    className="w-72 h-72 xl:w-80 xl:h-80 2xl:w-96 2xl:h-96 object-contain drop-shadow-2xl animate-scale-in"
                     priority
                   />
                   <div className="absolute inset-0 bg-brand-gold opacity-5 rounded-full blur-2xl scale-125 -z-10 animate-pulse-slow"></div>
@@ -166,6 +166,11 @@ export default function Hero() {
       <RequestCallback 
         isOpen={isCallbackOpen} 
         onClose={() => setIsCallbackOpen(false)} 
+      />
+      
+      <VirtualEstimateModal 
+        isOpen={isVirtualEstimateOpen} 
+        onClose={() => setIsVirtualEstimateOpen(false)} 
       />
       
       <style jsx>{`

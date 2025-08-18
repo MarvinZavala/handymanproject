@@ -1,15 +1,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, MapPin, Clock, Star } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Star, Instagram, Calendar } from 'lucide-react';
 
 export default function Footer() {
   const serviceLinks = [
-    { name: 'Plumbing Installation', href: '/services/plumbing-installation-replacement' },
-    { name: 'Water Heater Service', href: '/services/water-heater-installation' },
-    { name: 'Drain Cleaning', href: '/services/drain-snake-service' },
-    { name: 'Emergency Repairs', href: '/services/plumbing-repair' },
-    { name: 'Tankless Water Heaters', href: '/services/tankless-water-heater-installation' },
-    { name: 'Leak Detection', href: '/services/leak-inspection' },
+    { name: 'Plumbing Installation', href: '/services?search=installation' },
+    { name: 'Water Heater Service', href: '/services?search=water%20heater' },
+    { name: 'Drain Cleaning', href: '/services?search=drain' },
+    { name: 'Emergency Repairs', href: '/services?search=emergency' },
+    { name: 'Tankless Water Heaters', href: '/services?search=tankless' },
+    { name: 'Leak Detection', href: '/services?search=leak' },
+    { name: 'Gas Line Repiping', href: '/services?search=gas%20line%20repiping' },
+    { name: 'Water Line Repiping', href: '/services?search=water%20line%20repiping' },
+    { name: 'Sewer Lateral', href: '/services?search=sewer%20lateral' },
   ];
 
   const majorAreas = [
@@ -49,6 +52,86 @@ export default function Footer() {
               <span className="text-sm text-gray-300">
                 4.9/5 stars • 185+ reviews on Yelp
               </span>
+            </div>
+            
+            {/* Social Media Links */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium text-brand-gold">Follow Us</h4>
+              
+              {/* Instagram */}
+              <div className="flex items-center space-x-3">
+                <a
+                  href="https://www.instagram.com/twinhandyman_plumbing?igsh=NTc4MTIwNjQ2YQ=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 bg-pink-500/20 hover:bg-pink-500/30 rounded-lg transition-all duration-300 group"
+                  aria-label="Follow us on Instagram"
+                >
+                  <Instagram className="w-4 h-4 text-pink-500 group-hover:scale-110 transition-transform" />
+                </a>
+                <div className="flex-1">
+                  <a
+                    href="https://www.instagram.com/twinhandyman_plumbing?igsh=NTc4MTIwNjQ2YQ=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-pink-500 text-xs transition-colors"
+                  >
+                    @twinhandyman_plumbing
+                  </a>
+                </div>
+              </div>
+
+              {/* Yelp */}
+              <div className="flex items-center space-x-3">
+                <a
+                  href="https://www.yelp.com/biz/twin-handyman-and-plumbing-san-leandro?rr=1#location-and-hours"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 bg-red-500/20 hover:bg-red-500/30 rounded-lg transition-all duration-300 group"
+                  aria-label="Read our reviews on Yelp"
+                >
+                  <Image
+                    src="/YelpSVGcon.svg"
+                    alt="Yelp"
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 group-hover:scale-110 transition-transform"
+                  />
+                </a>
+                <div className="flex-1">
+                  <a
+                    href="https://www.yelp.com/biz/twin-handyman-and-plumbing-san-leandro?rr=1#location-and-hours"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-red-500 text-xs transition-colors"
+                  >
+                    Read our reviews
+                  </a>
+                </div>
+              </div>
+
+              {/* Calendly */}
+              <div className="flex items-center space-x-3">
+                <a
+                  href="https://calendly.com/gladiatorman4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 bg-brand-gold/20 hover:bg-brand-gold/30 rounded-lg transition-all duration-300 group"
+                  aria-label="Schedule an appointment"
+                >
+                  <Calendar className="w-4 h-4 text-brand-gold group-hover:scale-110 transition-transform" />
+                </a>
+                <div className="flex-1">
+                  <a
+                    href="https://calendly.com/gladiatorman4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-brand-gold text-xs transition-colors"
+                  >
+                    Schedule Appointment
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -144,8 +227,7 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-brand-gold mt-0.5" />
                 <div>
                   <p className="text-white text-sm">
-                    2763 San Leandro Blvd<br />
-                    San Leandro, CA 94578
+                    Serving The San Francisco Bay Area, Silicon Valley and Sacramento Area.
                   </p>
                 </div>
               </div>
@@ -154,9 +236,9 @@ export default function Footer() {
                 <Clock className="w-5 h-5 text-brand-gold mt-0.5" />
                 <div>
                   <p className="text-white text-sm">
-                    Mon-Fri: 7 AM - 7 PM<br />
-                    Sat-Sun: 8 AM - 6 PM<br />
-                    <span className="text-brand-gold-light">24/7 Emergency</span>
+                    <span className="text-brand-gold-light font-medium">Available 24/7</span><br />
+                    Monday through Sunday<br />
+                    <span className="text-gray-300">All plumbing services</span>
                   </p>
                 </div>
               </div>

@@ -1,8 +1,13 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import { Star, ExternalLink, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 export default function Reviews() {
+  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
+  const reviewsRef = useRef<HTMLDivElement>(null);
   const reviews = [
     {
       name: 'Sarah M.',
@@ -34,6 +39,28 @@ export default function Reviews() {
     }
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsReviewsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const currentRef = reviewsRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
   return (
     <section className="py-12 sm:py-16 bg-gray-50 relative overflow-hidden">
       {/* Background Image with Overlay */}
@@ -49,8 +76,8 @@ export default function Reviews() {
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center space-y-4 mb-12 sm:mb-16">
-          <div className="flex items-center justify-center space-x-2 mb-4">
+        <div ref={reviewsRef} className="text-center space-y-4 mb-12 sm:mb-16">
+          <div className={`flex items-center justify-center space-x-2 mb-4 transition-all duration-700 ${isReviewsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
             <div className="flex">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-6 h-6 text-yellow-400 fill-current drop-shadow-lg" />
@@ -59,16 +86,16 @@ export default function Reviews() {
             <span className="text-2xl font-bold text-brand-navy">4.9/5</span>
           </div>
           
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">
+          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight transition-all duration-700 ${isReviewsVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
             What Our Customers Say
           </h2>
           
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className={`text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed transition-all duration-700 ${isReviewsVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
             Don&apos;t just take our word for it. See why hundreds of Bay Area residents 
             trust Twin Handyman & Plumbing for their service needs.
           </p>
           
-          <div className="text-sm text-gray-500">
+          <div className={`text-sm text-gray-500 transition-all duration-700 ${isReviewsVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
             Based on 185+ verified reviews across Google, Yelp, and Facebook
           </div>
         </div>

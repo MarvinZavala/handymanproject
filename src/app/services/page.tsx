@@ -1,13 +1,53 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { services } from '@/lib/services';
 import { Phone, Search, Filter, Star, Wrench, Settings, CheckCircle } from 'lucide-react';
 
-export default function ServicesPage() {
+function ServicesContent() {
+  const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [isHeroVisible, setIsHeroVisible] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  const clearFilters = useCallback(() => {
+    setSearchTerm('');
+    setSelectedCategory('all');
+  }, []);
+
+  // Handle URL search parameters
+  useEffect(() => {
+    const search = searchParams.get('search');
+    if (search) {
+      setSearchTerm(decodeURIComponent(search));
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsHeroVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const heroRefCurrent = heroRef.current;
+    
+    if (heroRefCurrent) {
+      heroObserver.observe(heroRefCurrent);
+    }
+
+    return () => {
+      if (heroRefCurrent) {
+        heroObserver.unobserve(heroRefCurrent);
+      }
+    };
+  }, []);
 
   const categories = [
     { id: 'all', name: 'All Services', icon: Filter, color: 'brand-navy' },
@@ -38,48 +78,36 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-navy to-brand-blue text-white py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
-                <span className="block">All Our</span>
-                <span className="block text-brand-gold">Plumbing Services</span>
-              </h1>
-              <p className="text-xl sm:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
-                60+ professional services for every plumbing need. Licensed, bonded, and ready to help.
-              </p>
+      <section className="relative bg-gradient-to-br from-brand-navy via-brand-navy to-brand-blue text-white overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold rounded-full blur-3xl transform translate-x-32 -translate-y-32"></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-brand-blue-light rounded-full blur-3xl transform -translate-x-32 translate-y-32"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div ref={heroRef} className="text-center space-y-6">
+            <div className={`inline-flex items-center space-x-2 bg-brand-gold/20 text-brand-gold px-4 py-2 rounded-full text-sm font-medium transition-all duration-700 ${isHeroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
+              <Settings className="w-4 h-4" />
+              <span>All Services</span>
             </div>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-gold">{services.length}+</div>
-                <div className="text-sm text-gray-300">Services Available</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-gold">24/7</div>
-                <div className="text-sm text-gray-300">Emergency Service</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-gold">8+</div>
-                <div className="text-sm text-gray-300">Cities Served</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-brand-gold">Same Day</div>
-                <div className="text-sm text-gray-300">Service Available</div>
-              </div>
-            </div>
-
-            {/* Emergency CTA */}
-            <div className="pt-4">
+            
+            <h1 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight transition-all duration-700 ${isHeroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
+              <span className="block text-white">All Our</span>
+              <span className="block text-brand-gold" style={{ textShadow: '0 0 20px rgba(184, 142, 59, 0.5)' }}>Plumbing Services</span>
+            </h1>
+            
+            <p className={`text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed transition-all duration-700 ${isHeroVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
+              From emergency repairs to full installations. Licensed, bonded, and here when you need us most.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
               <Button 
                 size="lg"
-                className="bg-brand-gold hover:bg-yellow-600 text-brand-navy font-bold px-8 py-4 text-lg"
+                className="bg-brand-gold hover:bg-yellow-600 text-brand-navy font-bold px-8 py-4"
                 asChild
               >
                 <a href="tel:(510) 926-7272">
-                  <Phone className="w-6 h-6 mr-2" />
+                  <Phone className="w-5 h-5 mr-2" />
                   Call Now: (510) 926-7272
                 </a>
               </Button>
@@ -193,18 +221,7 @@ export default function ServicesPage() {
                       )}
                     </div>
 
-                    {/* CTA Button */}
-                    <div className="pt-2">
-                      <Button 
-                        className="w-full bg-brand-blue hover:bg-brand-navy text-white"
-                        asChild
-                      >
-                        <a href="tel:(510) 926-7272">
-                          <Phone className="w-4 h-4 mr-2" />
-                          Call for Service
-                        </a>
-                      </Button>
-                    </div>
+
                   </div>
                 </div>
               ))}
@@ -218,10 +235,7 @@ export default function ServicesPage() {
                   Try adjusting your search or category filter
                 </p>
                 <Button 
-                  onClick={() => {
-                    setSearchTerm('');
-                    setSelectedCategory('all');
-                  }}
+                  onClick={clearFilters}
                   variant="outline"
                 >
                   Clear Filters
@@ -268,5 +282,20 @@ export default function ServicesPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function ServicesPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading services...</p>
+        </div>
+      </div>
+    }>
+      <ServicesContent />
+    </Suspense>
   );
 }

@@ -39,20 +39,14 @@ export default function About() {
             </div>
 
             <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <div className="rounded-2xl overflow-hidden shadow-2xl bg-transparent p-8">
                 <Image
-                  src="/bathroom.jpg"
-                  alt="Beautiful bathroom renovation by Twin Handyman & Plumbing"
+                  src="/handymanlogo.png"
+                  alt="Twin Handyman & Plumbing Logo"
                   width={600}
                   height={400}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
-                  <div className="p-6 text-white">
-                    <h3 className="text-xl font-bold mb-2">Quality Craftsmanship</h3>
-                    <p className="text-sm opacity-90">Transforming spaces with expert precision</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -136,7 +130,7 @@ export default function About() {
                   <div className="w-8 h-8 bg-brand-gold rounded-full flex items-center justify-center flex-shrink-0">
                     <CheckCircle className="w-5 h-5 text-white" />
                   </div>
-                  <span className="text-gray-700">$2 Million General Liability Insurance</span>
+                  <span className="text-gray-700">General Liability Insurance</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-8 h-8 bg-brand-gold rounded-full flex items-center justify-center flex-shrink-0">

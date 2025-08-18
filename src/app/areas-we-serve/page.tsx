@@ -1,21 +1,58 @@
-import { Metadata } from 'next';
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import { MapPin, Phone, ArrowRight, Clock, Users, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceAreaMapWrapper from '@/components/ServiceAreaMapWrapper';
 
-export const metadata: Metadata = {
-  title: 'Service Areas | Twin Handyman & Plumbing | Bay Area Coverage',
-  description: 'Professional plumbing and handyman services throughout the Bay Area. Serving San Leandro, Oakland, Alameda, Berkeley, Hayward, and surrounding communities with 24/7 emergency service.',
-  keywords: 'plumbing Bay Area, handyman Oakland, San Leandro plumber, Alameda plumbing, Berkeley handyman, Hayward plumbing services',
-};
-
-
-
-
-
 export default function AreasWeServe() {
+  const [isAreasHeroVisible, setIsAreasHeroVisible] = useState(false);
+  const [isLocalExpertiseVisible, setIsLocalExpertiseVisible] = useState(false);
+  const areasHeroRef = useRef<HTMLDivElement>(null);
+  const localExpertiseRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const areasHeroObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsAreasHeroVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const localExpertiseObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsLocalExpertiseVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const areasHeroRefCurrent = areasHeroRef.current;
+    const localExpertiseRefCurrent = localExpertiseRef.current;
+    
+    if (areasHeroRefCurrent) {
+      areasHeroObserver.observe(areasHeroRefCurrent);
+    }
+    
+    if (localExpertiseRefCurrent) {
+      localExpertiseObserver.observe(localExpertiseRefCurrent);
+    }
+
+    return () => {
+      if (areasHeroRefCurrent) {
+        areasHeroObserver.unobserve(areasHeroRefCurrent);
+      }
+      if (localExpertiseRefCurrent) {
+        localExpertiseObserver.unobserve(localExpertiseRefCurrent);
+      }
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -26,19 +63,19 @@ export default function AreasWeServe() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center space-y-6">
-            <div className="inline-flex items-center space-x-2 bg-brand-gold/20 text-brand-gold px-4 py-2 rounded-full text-sm font-medium">
+          <div ref={areasHeroRef} className="text-center space-y-6">
+            <div className={`inline-flex items-center space-x-2 bg-brand-gold/20 text-brand-gold px-4 py-2 rounded-full text-sm font-medium transition-all duration-700 ${isAreasHeroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
               <MapPin className="w-4 h-4" />
               <span>Bay Area Coverage</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+            <h1 className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight transition-all duration-700 ${isAreasHeroVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
               <span className="block text-white">Serving the Entire</span>
               <span className="block text-brand-gold" style={{ textShadow: '0 0 20px rgba(184, 142, 59, 0.5)' }}>San Francisco Bay Area</span>
               <span className="block text-white text-xl sm:text-2xl lg:text-3xl xl:text-4xl">The Greater Sacramento Area</span>
             </h1>
             
-            <p className="text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+            <p className={`text-lg sm:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed transition-all duration-700 ${isAreasHeroVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
               From San Leandro to Sacramento, from Oakland to Stockton – we bring professional 
               plumbing and handyman services directly to your door, 24/7.
             </p>
@@ -98,15 +135,15 @@ export default function AreasWeServe() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="space-y-6">
-              <div>
+              <div ref={localExpertiseRef}>
                 <div className="inline-flex items-center space-x-2 bg-brand-gold/10 text-brand-gold px-4 py-2 rounded-full text-sm font-medium mb-4">
                   <Award className="w-4 h-4" />
                   <span>Local Expertise</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight mb-4">
+                <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight mb-4 transition-all duration-700 ${isLocalExpertiseVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
                   Why Choose Local Bay Area Experts?
                 </h2>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                <p className={`text-base sm:text-lg text-gray-600 leading-relaxed transition-all duration-700 ${isLocalExpertiseVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
                   As longtime Bay Area residents, we understand the unique challenges of our local homes and businesses. 
                   From older Oakland Victorian plumbing to modern Alameda condos, we've seen it all.
                 </p>

@@ -41,10 +41,10 @@ export default function Header() {
                   Licensed • Bonded • Insured
                 </div>
               </div>
-              {/* Mobile version - just company name */}
+              {/* Mobile version - full company name */}
               <div className="block md:hidden">
-                <div className="text-lg font-bold text-brand-navy">
-                  Twin Handyman
+                <div className="text-sm font-bold text-brand-navy">
+                  Twin Handyman & Plumbing
                 </div>
               </div>
             </Link>
@@ -67,9 +67,11 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button className="bg-brand-gold hover:bg-brand-gold-dark text-white">
-              <Phone className="w-4 h-4 mr-2" />
-              Request a Callback
+            <Button className="bg-brand-gold hover:bg-brand-gold-dark text-white" asChild>
+              <a href="tel:(510) 926-7272">
+                <Phone className="w-4 h-4 mr-2" />
+                Get Free Callback
+              </a>
             </Button>
           </div>
 
@@ -103,9 +105,11 @@ export default function Header() {
                 </Link>
               ))}
               <div className="px-3 py-2">
-                <Button className="w-full bg-brand-gold hover:bg-brand-gold-dark text-white">
-                  <Phone className="w-4 h-4 mr-2" />
-                  Request a Callback
+                <Button className="w-full bg-brand-gold hover:bg-brand-gold-dark text-white" asChild>
+                  <a href="tel:(510) 926-7272">
+                    <Phone className="w-4 h-4 mr-2" />
+                    Get Free Callback
+                  </a>
                 </Button>
               </div>
             </div>

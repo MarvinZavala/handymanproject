@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import Hero from '@/components/Hero';
 import ServiceCard from '@/components/ServiceCard';
 import Process from '@/components/Process';
@@ -11,6 +14,13 @@ import Image from 'next/image';
 import { ArrowRight, Phone, CheckCircle, Award } from 'lucide-react';
 
 export default function Home() {
+  const [isPopularServicesVisible, setIsPopularServicesVisible] = useState(false);
+  const [isCommercialServicesVisible, setIsCommercialServicesVisible] = useState(false);
+  const [isExpertiseVisible, setIsExpertiseVisible] = useState(false);
+  const popularServicesRef = useRef<HTMLDivElement>(null);
+  const commercialServicesRef = useRef<HTMLDivElement>(null);
+  const expertiseRef = useRef<HTMLDivElement>(null);
+  
   const popularServices = services.slice(0, 6); // Top 6 services for homepage
   const commercialServices = services.filter(s => s.category === 'featured' && s.title.toLowerCase().includes('commercial') || s.title.includes('100 Gallon') || s.title.includes('Hydro Jet') || s.title.includes('Rough Plumbing')).slice(-4); // Latest commercial services
   
@@ -21,6 +31,63 @@ export default function Home() {
     'drain-hydro-jet-cleaning-4-6-inch': '/Hydro-DrainCleaning 4-6 inch.jpg',
     'commercial-rough-plumbing': '/COMMERCIALPLUMBING.jpg'
   };
+
+  useEffect(() => {
+    const popularObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsPopularServicesVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const commercialObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsCommercialServicesVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const expertiseObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsExpertiseVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const popularRef = popularServicesRef.current;
+    const commercialRef = commercialServicesRef.current;
+    const expertiseRefCurrent = expertiseRef.current;
+    
+    if (popularRef) {
+      popularObserver.observe(popularRef);
+    }
+    
+    if (commercialRef) {
+      commercialObserver.observe(commercialRef);
+    }
+    
+    if (expertiseRefCurrent) {
+      expertiseObserver.observe(expertiseRefCurrent);
+    }
+
+    return () => {
+      if (popularRef) {
+        popularObserver.unobserve(popularRef);
+      }
+      if (commercialRef) {
+        commercialObserver.unobserve(commercialRef);
+      }
+      if (expertiseRefCurrent) {
+        expertiseObserver.unobserve(expertiseRefCurrent);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -38,15 +105,15 @@ export default function Home() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-8 sm:mb-12">
+          <div ref={popularServicesRef} className="text-center space-y-4 mb-8 sm:mb-12">
             <div className="inline-flex items-center space-x-2 bg-brand-blue/10 text-brand-blue px-4 py-2 rounded-full text-sm font-medium">
               <span>⚡</span>
               <span>Most Requested</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">
+            <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight transition-all duration-700 ${isPopularServicesVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
               Popular Services
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className={`text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed transition-all duration-700 ${isPopularServicesVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
               Expert solutions for your most common plumbing and handyman needs.
             </p>
           </div>
@@ -96,7 +163,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Commercial Services Section */}
+
+      {/* Commercial Services Section */
       <section className="py-12 sm:py-16 bg-gradient-to-br from-brand-navy via-slate-800 to-brand-navy text-white relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0">
@@ -105,18 +173,18 @@ export default function Home() {
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-6 mb-12">
+          <div ref={commercialServicesRef} className="text-center space-y-6 mb-12">
             <div className="inline-flex items-center space-x-2 bg-brand-gold/20 border border-brand-gold/30 text-brand-gold px-6 py-3 rounded-full text-sm font-bold">
               <Award className="w-5 h-5" />
               <span>COMMERCIAL SPECIALISTS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
+            <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight transition-all duration-700 ${isCommercialServicesVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
               <span className="block">Professional - Residential & Commercial</span>
               <span className="block bg-gradient-to-r from-brand-gold to-yellow-300 bg-clip-text text-transparent">
                 Plumbing Services
               </span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className={`text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-700 ${isCommercialServicesVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
               Specialized commercial solutions for businesses, restaurants, and industrial facilities. 
               <span className="text-brand-gold font-semibold"> Licensed, bonded, and ready for your project.</span>
             </p>
@@ -211,10 +279,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Process Section */}
-      <Process />
+      </section>/* Process Section */}
+      <Process/>
 
       {/* Expertise Showcase Section */}
       <section className="py-12 sm:py-16 bg-white">
@@ -222,15 +288,15 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Content */}
             <div className="space-y-6">
-              <div>
+              <div ref={expertiseRef}>
                 <div className="inline-flex items-center space-x-2 bg-brand-gold/10 text-brand-gold px-4 py-2 rounded-full text-sm font-medium mb-4">
                   <Award className="w-4 h-4" />
                   <span>Professional Results</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight mb-4">
+                <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight mb-4 transition-all duration-700 ${isExpertiseVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
                   Transforming Bay Area Homes
                 </h2>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                <p className={`text-base sm:text-lg text-gray-600 leading-relaxed transition-all duration-700 ${isExpertiseVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
                   From emergency repairs to complete renovations, our expert team delivers 
                   quality results that exceed expectations. See the difference professional 
                   craftsmanship makes.

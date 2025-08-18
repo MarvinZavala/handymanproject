@@ -65,7 +65,7 @@ export default function RequestCallback({ isOpen, onClose }: RequestCallbackProp
     console.log('Callback request:', data);
     
     toast.success(
-      'Request sent! We\'ll call you back within 30 minutes during business hours.',
+      'Request sent! We\'ll call you back within 30 minutes. We\'re available 24/7!',
       { duration: 5000 }
     );
     
@@ -107,8 +107,8 @@ export default function RequestCallback({ isOpen, onClose }: RequestCallbackProp
             <span>Request a Free Callback</span>
           </DialogTitle>
           <DialogDescription>
-            Fill out the form below and we'll call you back within 30 minutes during business hours. 
-            For emergencies, please call us directly at (510) 926-7272.
+            Fill out the form below and we'll call you back within 30 minutes. We're available 24/7! 
+            For immediate assistance, please call us directly at (510) 926-7272.
           </DialogDescription>
         </DialogHeader>
 

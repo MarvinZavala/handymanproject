@@ -1,7 +1,12 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import { Phone, Calendar, Wrench, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Process() {
+  const [isProcessVisible, setIsProcessVisible] = useState(false);
+  const processRef = useRef<HTMLDivElement>(null);
   const steps = [
     {
       icon: Phone,
@@ -12,7 +17,7 @@ export default function Process() {
     {
       icon: Calendar,
       title: 'Schedule Appointment',
-      description: 'We work around your schedule with flexible appointment times, including evenings and weekends. Emergency service available 24/7.',
+      description: 'We work around your schedule with flexible appointment times. Available 24/7, Monday through Sunday for all your plumbing needs.',
       step: '02'
     },
     {
@@ -29,6 +34,28 @@ export default function Process() {
     }
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsProcessVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const currentRef = processRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
   return (
     <section className="py-12 sm:py-16 bg-gray-50 relative overflow-hidden">
       {/* Background Image with Overlay */}
@@ -43,11 +70,11 @@ export default function Process() {
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-4 mb-12 sm:mb-16 px-2 sm:px-0">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight">
+        <div ref={processRef} className="text-center space-y-4 mb-12 sm:mb-16 px-2 sm:px-0">
+          <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-brand-navy leading-tight transition-all duration-700 ${isProcessVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
             How We Work
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className={`text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed transition-all duration-700 ${isProcessVisible ? 'animate-fade-in-delayed' : 'opacity-0'}`}>
             Simple, transparent process from initial contact to job completion. 
             We make getting professional plumbing service easy and stress-free.
           </p>
