@@ -1,28 +1,26 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, Star, Instagram, Calendar } from 'lucide-react';
+import { cities } from '@/lib/site';
 
 export default function Footer() {
   const serviceLinks = [
-    { name: 'Plumbing Installation', href: '/services?search=installation' },
-    { name: 'Water Heater Service', href: '/services?search=water%20heater' },
-    { name: 'Drain Cleaning', href: '/services?search=drain' },
-    { name: 'Emergency Repairs', href: '/services?search=emergency' },
-    { name: 'Tankless Water Heaters', href: '/services?search=tankless' },
-    { name: 'Leak Detection', href: '/services?search=leak' },
-    { name: 'Gas Line Repiping', href: '/services?search=gas%20line%20repiping' },
-    { name: 'Water Line Repiping', href: '/services?search=water%20line%20repiping' },
-    { name: 'Sewer Lateral', href: '/services?search=sewer%20lateral' },
+    { name: 'Water Heater Installation', href: '/services/water-heater-installation' },
+    { name: 'Tankless Water Heaters', href: '/services/tankless-water-heater-installation' },
+    { name: 'Water Heater Repair', href: '/services/water-heater-repair' },
+    { name: 'Hydro Jet Drain Cleaning', href: '/services/drain-hydro-jet-cleaning-4-6-inch' },
+    { name: 'Drain Repair', href: '/services/drain-repair' },
+    { name: 'Leak Inspection', href: '/services/leak-inspection' },
+    { name: 'Gas Line Repair', href: '/services/gas-line-repair' },
+    { name: 'Waterline Repiping', href: '/services/waterline-repiping' },
+    { name: 'Sewer Lateral Installation', href: '/services/sewer-lateral-installation' },
   ];
 
   const majorAreas = [
     'San Francisco Bay Area', 'Silicon Valley', 'Sacramento'
   ];
   
-  const localAreas = [
-    'Oakland', 'San Leandro', 'Alameda', 'Berkeley', 
-    'Hayward', 'San Lorenzo', 'Castro Valley', 'Fremont'
-  ];
+  const localAreas = cities.filter((c) => c.county === 'Alameda County');
 
   return (
     <footer className="bg-brand-navy text-white">
@@ -177,15 +175,19 @@ export default function Footer() {
               <h4 className="text-sm font-medium text-brand-gold mb-2">Local Communities</h4>
               <div className="grid grid-cols-2 sm:grid-cols-2 gap-1">
                 {localAreas.map((area) => (
-                  <span key={area} className="text-gray-300 text-sm">
-                    {area}
-                  </span>
+                  <Link
+                    key={area.slug}
+                    href={`/areas-we-serve/${area.slug}`}
+                    className="text-gray-300 hover:text-brand-gold text-sm transition-colors"
+                  >
+                    {area.name}
+                  </Link>
                 ))}
               </div>
             </div>
             
             <Link 
-              href="/areas"
+              href="/areas-we-serve"
               className="text-brand-gold hover:text-brand-gold-light text-sm transition-colors inline-block"
             >
               View all areas →

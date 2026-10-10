@@ -1,13 +1,14 @@
 import { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, MessageCircle, Instagram, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Twin Handyman & Plumbing | Bay Area Service',
-  description: 'Contact Twin Handyman & Plumbing for all your Bay Area plumbing needs. Call (510) 926-7272 for 24/7 emergency service or schedule an appointment.',
-  keywords: 'contact Twin Handyman, Bay Area plumber contact, plumbing emergency San Leandro, (510) 926-7272',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'Contact Us – 24/7 Emergency Plumber',
+  description: 'Call (510) 926-7272 for 24/7 emergency plumbing in San Leandro, Oakland and the Bay Area, or schedule a free estimate with Twin Handyman & Plumbing.',
+  path: '/contact',
+});
 
 export default function Contact() {
   return (

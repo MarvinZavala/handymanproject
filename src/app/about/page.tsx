@@ -1,13 +1,14 @@
 import { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import { Phone, Shield, Clock, Heart, Wrench, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
-export const metadata: Metadata = {
-  title: 'About Us | Twin Handyman & Plumbing | Bay Area Experts',
-  description: 'Learn about Twin Handyman & Plumbing - your trusted Bay Area plumbing and handyman experts. Licensed, insured, and committed to exceptional service since day one.',
-  keywords: 'about Twin Handyman, Bay Area plumbers, licensed plumbing company, handyman services Oakland, San Leandro plumbing',
-};
+export const metadata: Metadata = pageMetadata({
+  title: 'About Us – Licensed Bay Area Plumbers',
+  description: 'Meet Twin Handyman & Plumbing, a licensed, bonded and insured plumbing and handyman company based in San Leandro and serving Oakland and the Bay Area.',
+  path: '/about',
+});
 
 export default function About() {
   return (

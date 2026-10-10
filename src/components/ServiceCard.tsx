@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Service } from '@/lib/services';
@@ -24,7 +25,9 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         <div className="flex-grow space-y-2 sm:space-y-3 min-w-0">
           <div>
             <h3 className="text-lg sm:text-xl font-bold text-brand-navy mb-1 sm:mb-2 leading-tight">
-              {service.title}
+              <Link href={`/services/${service.slug}`} className="hover:text-brand-blue transition-colors">
+                {service.title}
+              </Link>
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
               {service.short}
@@ -51,9 +54,9 @@ export default function ServiceCard({ service }: ServiceCardProps) {
               className="text-brand-blue hover:text-brand-navy hover:bg-brand-blue-light hover:bg-opacity-20 p-1.5 sm:p-2 flex-shrink-0"
               asChild
             >
-              <a href="/gallery">
+              <Link href={`/services/${service.slug}`} aria-label={`Learn more about ${service.title}`}>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

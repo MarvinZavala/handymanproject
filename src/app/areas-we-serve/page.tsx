@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import ServiceAreaMapWrapper from '@/components/ServiceAreaMapWrapper';
+import { cities } from '@/lib/site';
 
 export default function AreasWeServe() {
   const [isAreasHeroVisible, setIsAreasHeroVisible] = useState(false);
@@ -127,6 +128,28 @@ export default function AreasWeServe() {
           </div>
 
           <ServiceAreaMapWrapper />
+        </div>
+      </section>
+
+      {/* City Pages */}
+      <section className="pb-12 sm:pb-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-brand-navy text-center mb-6">
+            Find a Plumber in Your City
+          </h2>
+          <ul className="flex flex-wrap justify-center gap-3">
+            {cities.map((city) => (
+              <li key={city.slug}>
+                <Link
+                  href={`/areas-we-serve/${city.slug}`}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-brand-blue/30 px-4 py-2 text-sm font-medium text-brand-blue hover:bg-brand-blue hover:text-white transition-colors"
+                >
+                  <MapPin className="w-4 h-4" />
+                  Plumber in {city.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
